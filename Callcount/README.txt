@@ -3,8 +3,8 @@ requires maven
 download the kieker binary release: http://se.informatik.uni-kiel.de/kieker/
 extract and go to the dist subfolder in the command prompt
 run:
-mvn install:install-file -Dfile=kieker-1.6_aspectj.jar -DgroupId=net.kieker-monitoring -DartifactId=kieker -Dversion=1.6 -Dclassifier=aspectj
-mvn install:install-file -Dfile=kieker-1.6_emf.jar -DgroupId=net.kieker-monitoring -DartifactId=kieker -Dversion=1.6 -Dclassifier=emf
+mvn install:install-file -Dfile=kieker-1.6_aspectj.jar -DgroupId=net.kieker-monitoring -DartifactId=kieker -Dversion=1.6 -Dclassifier=aspectj -Dpackaging=jar
+mvn install:install-file -Dfile=kieker-1.6_emf.jar -DgroupId=net.kieker-monitoring -DartifactId=kieker -Dversion=1.6 -Dclassifier=emf -Dpackaging=jar
 
 build with mvn package
 
