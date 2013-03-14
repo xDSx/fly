@@ -14,7 +14,7 @@
  * limitations under the License.
  ***************************************************************************/
 
-package callcount.probe;
+package callcount.lib.probe;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -30,8 +30,8 @@ import kieker.monitoring.core.registry.SessionRegistry;
 import kieker.monitoring.probe.aspectj.AbstractAspectJProbe;
 import kieker.monitoring.timer.ITimeSource;
 
-import callcount.record.OperationExecutionStartRecord;
-import callcount.record.OperationExecutionStopRecord;
+import callcount.lib.record.OperationExecutionStartRecord;
+import callcount.lib.record.OperationExecutionStopRecord;
 
 /**
  * @author Andre van Hoorn, Jan Waller

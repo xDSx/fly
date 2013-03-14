@@ -14,7 +14,7 @@
  * limitations under the License.
  ***************************************************************************/
 
-package callcount.record;
+package callcount.lib.record;
 
 import kieker.common.record.AbstractMonitoringRecord;
 import kieker.common.record.IMonitoringRecord;

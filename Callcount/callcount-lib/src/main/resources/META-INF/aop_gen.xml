@@ -6,11 +6,11 @@
 
     <aspects>
         <concrete-aspect name="Tracing"
-                               extends="callcount.probe.AbstractStartEndAspect">
+                               extends="callcount.lib.probe.AbstractStartEndAspect">
                 <pointcut name="monitoredOperation" expression="${pointcut}"/>
         </concrete-aspect>
         <concrete-aspect name="Analyzing"
-                               extends="callcount.analyze.AbstractAnalyze">
+                               extends="callcount.lib.analyze.AbstractAnalyze">
                 <pointcut name="main" expression="${pointcutAn}"/>
         </concrete-aspect>       
     </aspects>

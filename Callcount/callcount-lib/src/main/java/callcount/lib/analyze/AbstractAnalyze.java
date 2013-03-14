@@ -1,7 +1,7 @@
-package callcount.analyze;
+package callcount.lib.analyze;
 
 
-import callcount.CallFilter;
+import callcount.lib.CallFilter;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Arrays;
@@ -64,7 +64,7 @@ public abstract class AbstractAnalyze {
                 try {
                     analysis.join();
                     PrintWriter fout = new PrintWriter(new FileWriter(outFile));
-                    fout.println("Source;Target;Weight");
+                    //fout.println("Source;Target;Weight");
                     for (List<String> s: callFilter.getMap().keySet()) {
                         fout.println(s.get(0) + ";" + s.get(1) + ";" +callFilter.getMap().get(s));
                         //fout.println("\"" + s.get(0) + "\";\"" + s.get(1) + "\";" +callFilter.getMap().get(s));
