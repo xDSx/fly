@@ -21,13 +21,14 @@ public class Main {
             Main.class.getProtectionDomain().getCodeSource(
             ).getLocation().getPath()).getName().toString();
 
-    public static final String KIEKER_JAR = JAR_PATH + "/" + "kieker-1.6-aspectj.jar";
+    public static final String KIEKER_JAR = JAR_PATH + "/" + "kieker-aspectj-1.6.jar";
 
     public static final String AOP_XML = "aop.xml";
 
-    public static void analyze(File root, String jar, String cls,
+    public static void analyze(File roota, String jar, String cls,
                                String packets, String output, String args) {
         File inFile = new File(jar).getAbsoluteFile();
+	File root = inFile.getParentFile();
         try {
             String packagesMerged = packets;
             String pointcut = "";
