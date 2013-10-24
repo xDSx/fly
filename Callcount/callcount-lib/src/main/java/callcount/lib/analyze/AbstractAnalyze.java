@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.List;
+
+import callcount.lib.ExecutionTimeFilter;
 import kieker.analysis.AnalysisController;
 import kieker.analysis.plugin.reader.namedRecordPipe.PipeReader;
 import kieker.common.configuration.Configuration;
@@ -44,12 +46,18 @@ public abstract class AbstractAnalyze {
             analysisInstance.registerReader(reader);
         }
         final CallFilter callFilter;
+        final ExecutionTimeFilter etFilter;
         {
             final Configuration conf = new Configuration();
             callFilter = new CallFilter(conf);
+            final Configuration conf2 = new Configuration();
+            etFilter = new ExecutionTimeFilter(conf2);
+
             analysisInstance.registerFilter(callFilter);
+            analysisInstance.registerFilter(etFilter);
         }
         analysisInstance.connect(reader, PipeReader.OUTPUT_PORT_NAME_RECORDS, callFilter, CallFilter.INPUT_PORT_NAME_EVENTS);
+        analysisInstance.connect(reader, PipeReader.OUTPUT_PORT_NAME_RECORDS, etFilter, ExecutionTimeFilter.INPUT_PORT_NAME_EVENTS);
         final Thread analysis = new Thread(new Runnable() {
             public void run() {
         try {
@@ -65,8 +73,10 @@ public abstract class AbstractAnalyze {
                     analysis.join();
                     PrintWriter fout = new PrintWriter(new FileWriter(outFile));
                     //fout.println("Source;Target;Weight");
+                    etFilter.postProcess();
                     for (List<String> s: callFilter.getMap().keySet()) {
-                        fout.println(s.get(0) + ";" + s.get(1) + ";" +callFilter.getMap().get(s));
+                        fout.println(s.get(0) + ";" + s.get(1) + ";" +callFilter.getMap().get(s) + ";" +
+                                (int)(Math.max(etFilter.getMap().get(s) / 1000000, 1)));
                         //fout.println("\"" + s.get(0) + "\";\"" + s.get(1) + "\";" +callFilter.getMap().get(s));
                     }
                     fout.close();

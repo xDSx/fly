@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class GuiController {
 
-    public static String PATH = "/tmp/vladimir/fly/";//"C:\\fly\\";
+    public static String PATH = "C:\\fly\\";//"/tmp/vladimir/fly/";//"C:\\fly\\";
     public static String OUT_FILE = "out.txt";
 
     public static void unzip(File file, File root) throws IOException {

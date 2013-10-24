@@ -21,7 +21,9 @@ public class Main {
             Main.class.getProtectionDomain().getCodeSource(
             ).getLocation().getPath()).getName().toString();
 
-    public static final String KIEKER_JAR = JAR_PATH + "/" + "kieker-aspectj-1.6.jar";
+    public static final String KIEKER_JAR_NAME = "kieker-aspectj-1.6.jar";
+    public static final String KIEKER_EMF_JAR_NAME = "kieker-emf-1.6.jar";
+    public static final String KIEKER_JAR = JAR_PATH + "/" + KIEKER_JAR_NAME;
 
     public static final String AOP_XML = "aop.xml";
 
@@ -70,7 +72,7 @@ public class Main {
             javaTask.setClassname(cls);
             Argument jvmArgs = javaTask.createJvmarg();
 
-            jvmArgs.setLine("-Xms512m -Xmx512m" + " -javaagent:" + KIEKER_JAR +
+            jvmArgs.setLine("-Xms2g -Xmx2g" + " -javaagent:" + KIEKER_JAR +
                     " -Daj.weaving.verbose=true -Dorg.aspectj.weaver.loadtime.configuration="
                     + AOP_XML);
             Argument taskArgs = javaTask.createArg();
@@ -85,8 +87,14 @@ public class Main {
             classPath.addFileset(fileSet);
             fileSet = new FileSet();
             fileSet.setDir(JAR_PATH);
-            fileSet.setIncludes(KIEKER_JAR);
-            fileSet.setIncludes(JAR_PATH.toString());
+            fileSet.setIncludes(KIEKER_JAR_NAME);
+            classPath.addFileset(fileSet);
+            fileSet = new FileSet();
+            fileSet.setDir(JAR_PATH);
+            fileSet.setIncludes(KIEKER_EMF_JAR_NAME);
+            classPath.addFileset(fileSet);
+            fileSet = new FileSet();
+            fileSet.setDir(JAR_PATH);
             fileSet.setIncludes(JAR_NAME);
             classPath.addFileset(fileSet);
             fileSet = new FileSet();
